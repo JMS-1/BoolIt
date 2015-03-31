@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.Random;
 
@@ -25,6 +26,12 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
 
     private ImageView m_guessOff;
 
+    private TextView m_points;
+
+    private int m_correct;
+
+    private int m_total;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +43,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
         m_input1 = (ImageView) findViewById(R.id.input_random);
         m_guessOn = (ImageView) findViewById(R.id.output_on);
         m_guessOff = (ImageView) findViewById(R.id.output_off);
+        m_points = (TextView) findViewById(R.id.points);
 
         m_guessOn.setOnClickListener(this);
         m_guessOff.setOnClickListener(this);
@@ -43,7 +51,34 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
         reset(false);
     }
 
+    private int getTotal() {
+        return m_total;
+    }
+
+    private int getCorrect() {
+        return m_correct;
+    }
+
+    private void guess(boolean correct) {
+        m_total++;
+
+        if (correct)
+            m_correct++;
+    }
+
+    private void reset() {
+        m_correct = 0;
+        m_total = 0;
+
+        reset(false);
+    }
+
     private void reset(boolean lastGuess) {
+        if (getTotal() == 0)
+            m_points.setText(R.string.result_initial);
+        else
+            m_points.setText(getResources().getString(R.string.result_current, (int) Math.round(100d * getCorrect() / getTotal())));
+
         Calculator calculator;
 
         switch (m_generator.nextInt(7)) {
@@ -77,21 +112,17 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_welcome, menu);
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_reset:
+                reset();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -114,7 +145,8 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         boolean guessOn = (v == m_guessOn);
 
-        if (guessOn == m_current.Calculator.getOutput())
-            reset(guessOn);
+        guess(guessOn == m_current.Calculator.getOutput());
+
+        reset(guessOn);
     }
 }
