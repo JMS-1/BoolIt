@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Date;
 import java.util.Random;
 
 
@@ -22,15 +23,19 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
 
     private ImageView m_input1;
 
+    private ImageView m_input01;
+
     private ImageView m_guessOn;
 
     private ImageView m_guessOff;
 
     private TextView m_points;
 
-    private int m_correct;
+    private long m_collected;
 
-    private int m_total;
+    private long m_tries;
+
+    private Date m_start;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +45,8 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
 
         m_calculator = (ImageView) findViewById(R.id.calculator);
         m_input0 = (ImageView) findViewById(R.id.input_guess);
-        m_input1 = (ImageView) findViewById(R.id.input_random);
+        m_input1 = (ImageView) findViewById(R.id.input_random_2);
+        m_input01 = (ImageView) findViewById(R.id.input_random_1);
         m_guessOn = (ImageView) findViewById(R.id.output_on);
         m_guessOff = (ImageView) findViewById(R.id.output_off);
         m_points = (TextView) findViewById(R.id.points);
@@ -51,33 +57,35 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
         reset(false);
     }
 
-    private int getTotal() {
-        return m_total;
-    }
-
-    private int getCorrect() {
-        return m_correct;
-    }
-
     private void guess(boolean correct) {
-        m_total++;
+        Date end = new Date();
+        long delta = end.getTime() - m_start.getTime();
 
-        if (correct)
-            m_correct++;
+        m_tries++;
+
+        if (!correct)
+            return;
+
+        if (delta <= 1000)
+            m_collected += 100;
+        else if (delta >= 10000)
+            m_collected += 1;
+        else
+            m_collected += Math.round(1 + (99 * (10000 - delta) / 9000));
     }
 
     private void reset() {
-        m_correct = 0;
-        m_total = 0;
+        m_collected = 0;
+        m_tries = 0;
 
         reset(false);
     }
 
     private void reset(boolean lastGuess) {
-        if (getTotal() == 0)
-            m_points.setText(R.string.result_initial);
+        if (m_tries < 1)
+            m_points.setText(null);
         else
-            m_points.setText(getResources().getString(R.string.result_current, (int) Math.round(100d * getCorrect() / getTotal())));
+            m_points.setText(getResources().getString(R.string.result_current, Math.round(m_collected / m_tries)));
 
         Calculator calculator;
 
@@ -130,15 +138,24 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
 
     private void changeGuess(OneGuess newGuess) {
         m_current = newGuess;
+        m_start = new Date();
 
         Calculator calculator = newGuess.Calculator;
 
         m_calculator.setImageResource(calculator.ImageResourceId);
-        m_input0.setActivated(calculator.getInput(0));
-        m_input1.setVisibility((calculator.getCount() > 1) ? View.VISIBLE : View.INVISIBLE);
 
-        if (calculator.getCount() > 1)
+        if (calculator.getCount() > 1) {
+            m_input0.setActivated(calculator.getInput(0));
+            m_input0.setVisibility(View.VISIBLE);
             m_input1.setActivated(calculator.getInput(1));
+            m_input1.setVisibility(View.VISIBLE);
+            m_input01.setVisibility(View.INVISIBLE);
+        } else {
+            m_input0.setVisibility(View.INVISIBLE);
+            m_input1.setVisibility(View.INVISIBLE);
+            m_input01.setVisibility(View.VISIBLE);
+            m_input01.setActivated(calculator.getInput(0));
+        }
     }
 
     @Override
