@@ -4,4 +4,15 @@
     <string name="action_settings">Auf Anfang</string>
 
     <string name="result_current">Ergebnis im Mittel: %1$d</string>
+
+    <string name="short_and">UND (Konjunktion)</string>
+    <string name="short_nand">NICHT UND (-)</string>
+    <string name="short_or">ODER (Disjunktion)</string>
+    <string name="short_nor">NICHT ODER (-)</string>
+    <string name="short_xor">Exklusiv-ODER (Antivalenz)</string>
+    <string name="short_xnor">NICHT Exklusiv-ODER (Äquivalenz)</string>
+    <string name="short_not">NICHT (Negation)</string>
+    <string name="title_activity_calculator_info">CalculatorInfo</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>

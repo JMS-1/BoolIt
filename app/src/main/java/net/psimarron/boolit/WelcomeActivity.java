@@ -1,6 +1,7 @@
 package net.psimarron.boolit;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,6 +55,16 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
         m_guessOn.setOnClickListener(this);
         m_guessOff.setOnClickListener(this);
 
+        m_calculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(WelcomeActivity.this, CalculatorInfo.class);
+                intent.putExtra(CalculatorInfo.EXTRA_CALCULATOR, m_current.Calculator.getIndex());
+                startActivity(intent);
+            }
+        });
+
         reset(false);
     }
 
@@ -87,33 +98,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
         else
             m_points.setText(getResources().getString(R.string.result_current, Math.round(m_collected / m_tries)));
 
-        Calculator calculator;
-
-        switch (m_generator.nextInt(7)) {
-            case 0:
-                calculator = new AndCalculator();
-                break;
-            case 1:
-                calculator = new OrCalculator();
-                break;
-            case 2:
-                calculator = new XorCalculator();
-                break;
-            case 3:
-                calculator = new NotAndCalculator();
-                break;
-            case 4:
-                calculator = new NotOrCalculator();
-                break;
-            case 5:
-                calculator = new NotXorCalculator();
-                break;
-            case 6:
-                calculator = new NotCalculator();
-                break;
-            default:
-                return;
-        }
+        Calculator calculator = Calculator.createCalculator(m_generator.nextInt(Calculator.getCalculatorCount()));
 
         changeGuess(new OneGuess(calculator, lastGuess));
     }
@@ -142,7 +127,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
 
         Calculator calculator = newGuess.Calculator;
 
-        m_calculator.setImageResource(calculator.ImageResourceId);
+        m_calculator.setImageResource(calculator.getImageResourceId());
 
         if (calculator.getCount() > 1) {
             m_input0.setActivated(calculator.getInput(0));
