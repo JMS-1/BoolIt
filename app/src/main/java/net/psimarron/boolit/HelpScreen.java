@@ -16,8 +16,8 @@ public class HelpScreen extends Activity {
 
         LinearLayout calculators = (LinearLayout) findViewById(R.id.calculator_list);
 
-        for (int i = 0; i < Calculator.getCalculatorCount(); i++) {
-            Calculator calculator = Calculator.createCalculator(i);
+        for (int i = 0; i < CalculatorBase.getCalculatorCount(); i++) {
+            CalculatorBase calculator = CalculatorBase.createCalculator(i);
 
             getLayoutInflater().inflate(R.layout.help_image, calculators, true);
 

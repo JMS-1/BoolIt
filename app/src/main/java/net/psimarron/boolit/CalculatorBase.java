@@ -1,6 +1,6 @@
 package net.psimarron.boolit;
 
-public abstract class Calculator {
+public abstract class CalculatorBase {
     private final static Class<?>[] _CalculatorClasses =
             {
                     AndCalculator.class,
@@ -14,7 +14,7 @@ public abstract class Calculator {
     private final boolean[] m_inputs;
     private int m_index;
 
-    protected Calculator(int numberOfInputs) {
+    protected CalculatorBase(int numberOfInputs) {
         m_inputs = new boolean[numberOfInputs];
     }
 
@@ -22,9 +22,9 @@ public abstract class Calculator {
         return _CalculatorClasses.length;
     }
 
-    public static Calculator createCalculator(int index) {
+    public static CalculatorBase createCalculator(int index) {
         try {
-            Calculator calculator = (Calculator) _CalculatorClasses[index].newInstance();
+            CalculatorBase calculator = (CalculatorBase) _CalculatorClasses[index].newInstance();
 
             calculator.m_index = index;
 
@@ -56,5 +56,7 @@ public abstract class Calculator {
 
     public abstract int getImageResourceId();
 
-    public abstract int getShortNameId();
+    public abstract int getName();
+
+    public abstract int getDescription();
 }

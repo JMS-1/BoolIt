@@ -4,13 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class CalculatorInfo extends Activity {
     private static final String EXTRA_CALCULATOR = "index";
 
-    private Calculator m_calculator;
-
-    private ImageView m_image;
+    private CalculatorBase m_calculator;
 
     public static void show(Activity parent, int index) {
         Intent intent = new Intent();
@@ -21,15 +20,17 @@ public class CalculatorInfo extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        m_calculator = Calculator.createCalculator(getIntent().getIntExtra(EXTRA_CALCULATOR, -1));
+        m_calculator = CalculatorBase.createCalculator(getIntent().getIntExtra(EXTRA_CALCULATOR, -1));
 
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_calculator_info);
 
-        m_image = (ImageView) findViewById(R.id.info_picture);
+        ImageView image = (ImageView) findViewById(R.id.info_picture);
+        TextView description = (TextView) findViewById(R.id.info_description);
 
-        setTitle(m_calculator.getShortNameId());
-        m_image.setImageResource(m_calculator.getImageResourceId());
+        setTitle(m_calculator.getName());
+        description.setText(m_calculator.getDescription());
+        image.setImageResource(m_calculator.getImageResourceId());
     }
 }

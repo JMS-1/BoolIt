@@ -1,7 +1,9 @@
 package net.psimarron.boolit;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,9 +16,11 @@ import java.util.Random;
 
 
 public class WelcomeActivity extends Activity implements View.OnClickListener {
-    private final Random m_generator = new Random();
+    private final String NAME_TRIES = "tries";
 
-    private OneGuess m_current;
+    private final String NAME_POINTS = "points";
+
+    private CalculatorBase m_current;
 
     private ImageView m_calculator;
 
@@ -42,6 +46,10 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
+        m_tries = preferences.getLong(NAME_TRIES, 0);
+        m_collected = preferences.getLong(NAME_POINTS, 0);
+
         setContentView(R.layout.activity_welcome);
 
         m_calculator = (ImageView) findViewById(R.id.calculator);
@@ -58,11 +66,11 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
         m_calculator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CalculatorInfo.show(WelcomeActivity.this, m_current.Calculator.getIndex());
+                CalculatorInfo.show(WelcomeActivity.this, m_current.getIndex());
             }
         });
 
-        reset(false);
+        newChallenge();
     }
 
     private void guess(boolean correct) {
@@ -71,33 +79,48 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
 
         m_tries++;
 
-        if (!correct)
-            return;
+        if (correct) {
+            if (delta <= 1000)
+                m_collected += 100;
+            else if (delta >= 10000)
+                m_collected += 1;
+            else
+                m_collected += Math.round(1 + (99 * (10000 - delta) / 9000));
+        }
 
-        if (delta <= 1000)
-            m_collected += 100;
-        else if (delta >= 10000)
-            m_collected += 1;
-        else
-            m_collected += Math.round(1 + (99 * (10000 - delta) / 9000));
+        updatePreferences();
+    }
+
+    private void updatePreferences() {
+        SharedPreferences.Editor preferences = getPreferences(Context.MODE_PRIVATE).edit();
+        preferences.putLong(NAME_TRIES, m_tries);
+        preferences.putLong(NAME_POINTS, m_collected);
+        preferences.commit();
     }
 
     private void reset() {
         m_collected = 0;
         m_tries = 0;
 
-        reset(false);
+        updatePreferences();
+
+        newChallenge();
     }
 
-    private void reset(boolean lastGuess) {
+    private void newChallenge() {
         if (m_tries < 1)
             m_points.setText(null);
         else
             m_points.setText(getResources().getString(R.string.result_current, Math.round(m_collected / m_tries)));
 
-        Calculator calculator = Calculator.createCalculator(m_generator.nextInt(Calculator.getCalculatorCount()));
+        Random generator = new Random();
 
-        changeGuess(new OneGuess(calculator, lastGuess));
+        CalculatorBase calculator = CalculatorBase.createCalculator(generator.nextInt(CalculatorBase.getCalculatorCount()));
+
+        for (int i = 0; i < calculator.getCount(); i++)
+            calculator.setInput(i, generator.nextBoolean());
+
+        changeGuess(calculator);
     }
 
     @Override
@@ -124,11 +147,9 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
-    private void changeGuess(OneGuess newGuess) {
-        m_current = newGuess;
+    private void changeGuess(CalculatorBase calculator) {
+        m_current = calculator;
         m_start = new Date();
-
-        Calculator calculator = newGuess.Calculator;
 
         m_calculator.setImageResource(calculator.getImageResourceId());
 
@@ -152,14 +173,14 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         boolean guessOn = (v == m_guessOn);
-        boolean win = (guessOn == m_current.Calculator.getOutput());
+        boolean win = (guessOn == m_current.getOutput());
 
         boolean alreadyLost = m_guessOn.isActivated() || m_guessOff.isActivated();
         if (!alreadyLost)
             guess(win);
 
         if (win)
-            reset(guessOn);
+            newChallenge();
         else if (!alreadyLost)
             v.setActivated(true);
     }

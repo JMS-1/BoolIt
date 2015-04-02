@@ -1,6 +1,6 @@
 package net.psimarron.boolit;
 
-public class NotCalculator extends Calculator {
+public class NotCalculator extends CalculatorBase {
     public NotCalculator() {
         super(1);
     }
@@ -16,7 +16,12 @@ public class NotCalculator extends Calculator {
     }
 
     @Override
-    public int getShortNameId() {
+    public int getName() {
         return R.string.short_not;
+    }
+
+    @Override
+    public int getDescription() {
+        return R.string.long_not;
     }
 }

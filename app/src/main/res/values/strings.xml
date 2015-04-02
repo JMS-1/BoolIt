@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Boolsche Logik</string>
+    <string name="app_name">BoolIt</string>
 
     <string name="action_reset">Auf Anfang</string>
     <string name="action_help">Erklärungen</string>
@@ -14,5 +14,15 @@
     <string name="short_xnor">NICHT Exklusiv-ODER (Äquivalenz)</string>
     <string name="short_not">NICHT (Negation)</string>
 
+    <string name="long_and">Der Ausgang dieses Logikgatters ist nur dann gesetzt, wenn beide Eingänge gesetzt sind.</string>
+    <string name="long_nand">Der Ausgang dieses Logikgatters ist gesetzt, sobald einer der beiden Eingänge nicht gesetzt ist.</string>
+    <string name="long_or">Der Ausgang dieses Logikgatters ist gesetzt, sobald irgendeiner der beiden Eingänge gesetzt ist.</string>
+    <string name="long_nor">Der Ausgang dieses Logikgatters ist nur dann gesetzt, wenn keiner der beiden Eingänge gesetzt ist.</string>
+    <string name="long_xor">Der Ausgang dieses Logikgatters ist immer dann gesetzt, wenn die beiden Eingänge unterschiedlich gesetzt sind.</string>
+    <string name="long_xnor">Der Ausgang dieses Logikgatters ist immer dann gesetzt, wenn die beiden Eingänge identisch gesetzt sind.</string>
+    <string name="long_not">Der Ausgang dieses Logikgatters ist immer dann gesetzt, wenn der einzige Eingänge nicht gesetzt ist.</string>
+
     <string name="title_activity_help_screen">Erläuterungen</string>
+
+    <string name="activity_help_text">Hier kannst Du beweisen, ob Du die wichtigsten Logikgatter und die zugehörige boolsche Algebra kennst.\r\n\r\nIn jeder Aufgabe wird ein Logikgatter gezeigt - durch Antippen kannst Du es Dir kurz beschreiben lassen. Unter dem Gatter siehst Du die Eingänge und es ist nun Deine Aufgabe, möglichst schnell über dem Gatter die richtige Ausgabe auszuwählen.\r\n\r\nIst Deine Wahl richtig, so bekommst Du zwischen 1 und 100 Punkte - je nachdem, wie schnell Du warst. Bei einer falschen Wahl gibt es keine Punkte und Du musst für die nächste Aufgabe die richtige Ausgabe anwählen.</string>
 </resources>
