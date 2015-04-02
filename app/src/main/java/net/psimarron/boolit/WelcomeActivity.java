@@ -58,10 +58,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
         m_calculator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(WelcomeActivity.this, CalculatorInfo.class);
-                intent.putExtra(CalculatorInfo.EXTRA_CALCULATOR, m_current.Calculator.getIndex());
-                startActivity(intent);
+                CalculatorInfo.show(WelcomeActivity.this, m_current.Calculator.getIndex());
             }
         });
 
@@ -116,6 +113,12 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
             case R.id.action_reset:
                 reset();
                 return true;
+            case R.id.action_help:
+                Intent intent = new Intent();
+                intent.setClass(this, HelpScreen.class);
+                startActivity(intent);
+
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -141,14 +144,23 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
             m_input01.setVisibility(View.VISIBLE);
             m_input01.setActivated(calculator.getInput(0));
         }
+
+        m_guessOn.setActivated(false);
+        m_guessOff.setActivated(false);
     }
 
     @Override
     public void onClick(View v) {
         boolean guessOn = (v == m_guessOn);
+        boolean win = (guessOn == m_current.Calculator.getOutput());
 
-        guess(guessOn == m_current.Calculator.getOutput());
+        boolean alreadyLost = m_guessOn.isActivated() || m_guessOff.isActivated();
+        if (!alreadyLost)
+            guess(win);
 
-        reset(guessOn);
+        if (win)
+            reset(guessOn);
+        else if (!alreadyLost)
+            v.setActivated(true);
     }
 }

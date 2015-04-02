@@ -19,7 +19,10 @@
         </activity>
         <activity
             android:name=".CalculatorInfo"
-            android:label="@string/title_activity_calculator_info"></activity>
+            android:label="@string/title_activity_calculator_info" />
+        <activity
+            android:name=".HelpScreen"
+            android:label="@string/title_activity_help_screen"></activity>
     </application>
 
 </manifest>

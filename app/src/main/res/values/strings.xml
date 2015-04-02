@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">BoolIt</string>
 
-    <string name="action_settings">Auf Anfang</string>
+    <string name="action_reset">Auf Anfang</string>
+    <string name="action_help">Erklärungen</string>
 
     <string name="result_current">Ergebnis im Mittel: %1$d</string>
 
@@ -15,4 +16,6 @@
     <string name="title_activity_calculator_info">CalculatorInfo</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_help_screen">HelpScreen</string>
+    <string name="action_settings">Settings</string>
 </resources>

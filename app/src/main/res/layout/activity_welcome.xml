@@ -30,14 +30,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="10dp"
-            android:src="@drawable/off" />
+            android:src="@drawable/guess_off" />
 
         <ImageView
             android:id="@+id/output_on"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-            android:src="@drawable/on" />
+            android:src="@drawable/guess_on" />
     </LinearLayout>
 
     <ImageView
