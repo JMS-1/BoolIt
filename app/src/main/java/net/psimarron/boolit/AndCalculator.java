@@ -1,5 +1,6 @@
 package net.psimarron.boolit;
 
+// Repräsentiert ein AND Gatter.
 public class AndCalculator extends CalculatorBase {
     public AndCalculator() {
         super(2);

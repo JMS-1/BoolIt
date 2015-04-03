@@ -1,5 +1,6 @@
 package net.psimarron.boolit;
 
+// Repräsentiert ein NAND Gatter.
 public class NotAndCalculator extends CalculatorBase {
     public NotAndCalculator() {
         super(2);

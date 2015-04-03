@@ -1,5 +1,6 @@
 package net.psimarron.boolit;
 
+// Repräsentiert ein OR Gatter.
 public class OrCalculator extends CalculatorBase {
     public OrCalculator() {
         super(2);

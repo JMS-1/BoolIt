@@ -1,5 +1,6 @@
 package net.psimarron.boolit;
 
+// Repräsentiert ein NOT Gatter.
 public class NotCalculator extends CalculatorBase {
     public NotCalculator() {
         super(1);

@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">BoolIt</string>
+
+    <string name="action_reset">Reset</string>
+    <string name="action_help">How to Play</string>
+
+    <string name="result_current">Avarage Result: %1$d</string>
+
+    <string name="short_and">AND (Conjunction)</string>
+    <string name="short_nand">NOT AND (-)</string>
+    <string name="short_or">OR (Disjunction)</string>
+    <string name="short_nor">NOT OR (-)</string>
+    <string name="short_xor">Exclusive-OR (Exclusive Disjunction)</string>
+    <string name="short_xnor">NOT Exclusive-OR (Equality)</string>
+    <string name="short_not">NOT (Negation)</string>
+
+    <string name="long_and">The gate sets its output only if both inputs are active.</string>
+    <string name="long_nand">The gate sets its output only if at least one input is not active.</string>
+    <string name="long_or">The gate sets its output if at least one input is active.</string>
+    <string name="long_nor">The gate sets its output only if both inputs are not active.</string>
+    <string name="long_xor">The gate sets its output only if both inputs are different.</string>
+    <string name="long_xnor">The gate sets its output only if both inputs are identical.</string>
+    <string name="long_not">The gate sets its output only if the input is not active.</string>
+
+    <string name="title_activity_help_screen">About the Puzzle</string>
+
+    <string name="activity_help_text">This is your chance to show what you know about the most important logic gates.\r\n\r\nEach puzzle shows one logic gate - touch it to get some more information. Below the gate the states of the inputs are shown and it is your task to choose the correct output state just above the gate.\r\n\r\nIf you are right you get some points between 1 and 100 - depending on how fast you were. Otherweise there are no points and to get the next puzzle you have to confirm the correct state.</string>
+</resources>

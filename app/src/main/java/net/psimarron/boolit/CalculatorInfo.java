@@ -6,11 +6,12 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+// Diese Aktivität zeigt eine kurze Beschreibung eines Gatters an.
 public class CalculatorInfo extends Activity {
+    // Die Identifikation der laufenden Nummer des Gatters im Intent.
     private static final String EXTRA_CALCULATOR = "index";
 
-    private CalculatorBase m_calculator;
-
+    // Zeigt die Beschreibung eines Gatters an.
     public static void show(Activity parent, int index) {
         Intent intent = new Intent();
         intent.setClass(parent, CalculatorInfo.class);
@@ -20,17 +21,21 @@ public class CalculatorInfo extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        m_calculator = CalculatorBase.createCalculator(getIntent().getIntExtra(EXTRA_CALCULATOR, -1));
-
         super.onCreate(savedInstanceState);
 
+        // Visuelle Elemente laden
         setContentView(R.layout.activity_calculator_info);
 
+        // Relevante Elemente identifizieren
         ImageView image = (ImageView) findViewById(R.id.info_picture);
         TextView description = (TextView) findViewById(R.id.info_description);
 
-        setTitle(m_calculator.getName());
-        description.setText(m_calculator.getDescription());
-        image.setImageResource(m_calculator.getImageResourceId());
+        // Gewünschtes Gatter erzeugen
+        CalculatorBase calculator = CalculatorBase.createCalculator(getIntent().getIntExtra(EXTRA_CALCULATOR, -1));
+
+        // Informationen über das Gatter in die Oberfläche übertragen
+        setTitle(calculator.getName());
+        description.setText(calculator.getDescription());
+        image.setImageResource(calculator.getImageResourceId());
     }
 }
