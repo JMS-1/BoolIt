@@ -15,8 +15,8 @@
     <string name="short_not">NICHT (Negation)</string>
 
     <string name="long_and">Der Ausgang dieses Logikgatters ist nur dann gesetzt, wenn beide Eingänge gesetzt sind.</string>
-    <string name="long_nand">Der Ausgang dieses Logikgatters ist gesetzt, sobald einer der beiden Eingänge nicht gesetzt ist.</string>
-    <string name="long_or">Der Ausgang dieses Logikgatters ist gesetzt, sobald irgendeiner der beiden Eingänge gesetzt ist.</string>
+    <string name="long_nand">Der Ausgang dieses Logikgatters ist gesetzt, wenn mindestens einer der beiden Eingänge nicht gesetzt ist.</string>
+    <string name="long_or">Der Ausgang dieses Logikgatters ist gesetzt, wenn mindestens einer der beiden Eingänge gesetzt ist.</string>
     <string name="long_nor">Der Ausgang dieses Logikgatters ist nur dann gesetzt, wenn keiner der beiden Eingänge gesetzt ist.</string>
     <string name="long_xor">Der Ausgang dieses Logikgatters ist immer dann gesetzt, wenn die beiden Eingänge unterschiedlich gesetzt sind.</string>
     <string name="long_xnor">Der Ausgang dieses Logikgatters ist immer dann gesetzt, wenn die beiden Eingänge identisch gesetzt sind.</string>
