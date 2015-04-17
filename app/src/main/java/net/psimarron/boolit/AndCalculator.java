@@ -12,8 +12,12 @@ public class AndCalculator extends CalculatorBase {
     }
 
     @Override
-    public int getImageResourceId() {
-        return R.drawable.and;
+    public int getImageResourceId(DisplayMode mode) {
+        switch (mode) {
+            default:
+                // Der Vorzugsmodus ist US ANSI 91-1984
+                return R.drawable.and;
+        }
     }
 
     @Override

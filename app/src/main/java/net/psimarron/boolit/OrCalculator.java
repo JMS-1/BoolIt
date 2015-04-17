@@ -12,8 +12,12 @@ public class OrCalculator extends CalculatorBase {
     }
 
     @Override
-    public int getImageResourceId() {
-        return R.drawable.or;
+    public int getImageResourceId(DisplayMode mode) {
+        switch (mode) {
+            default:
+                // Der Vorzugsmodus ist US ANSI 91-1984
+                return R.drawable.or;
+        }
     }
 
     @Override

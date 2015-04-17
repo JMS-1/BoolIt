@@ -19,21 +19,22 @@
         android:id="@+id/outputs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/points"
-        android:layout_centerHorizontal="true">
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/output_off"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
             android:src="@drawable/guess_off" />
 
         <ImageView
             android:id="@+id/output_on"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
             android:src="@drawable/guess_on" />
     </LinearLayout>
 
@@ -41,8 +42,8 @@
         android:id="@+id/input_guess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:src="@drawable/bit" />
 
     <ImageView
@@ -50,24 +51,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
         android:src="@drawable/bit" />
 
     <ImageView
         android:id="@+id/input_random_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
         android:src="@drawable/bit" />
 
     <ImageView
         android:id="@+id/calculator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/input_guess"
-        android:layout_below="@id/outputs"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp" />
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/outputs"
+        android:layout_toRightOf="@id/input_guess" />
 
 </RelativeLayout>

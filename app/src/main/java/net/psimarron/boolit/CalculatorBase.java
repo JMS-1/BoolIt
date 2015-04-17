@@ -13,10 +13,8 @@ public abstract class CalculatorBase {
                     NotXorCalculator.class,
                     NotCalculator.class,
             };
-
     // Die Eingänge des Gatters.
     private final boolean[] m_inputs;
-
     // Die interne und willkürliche laufende Nummer der Art des Gatters - wie in _CalculatorClasses eingeordnet.
     private int m_index;
 
@@ -71,11 +69,16 @@ public abstract class CalculatorBase {
     public abstract boolean getOutput();
 
     // Meldet ein Bild des Gatters.
-    public abstract int getImageResourceId();
+    public abstract int getImageResourceId(DisplayMode mode);
 
     // Meldet einen Kurznammen für das Gatter.
     public abstract int getName();
 
     // Meldet eine Beschreibung für das Gatter.
     public abstract int getDescription();
+
+    // Die gewählte Art der Bilder.
+    public enum DisplayMode {
+        Ansi
+    }
 }

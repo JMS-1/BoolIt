@@ -187,7 +187,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
         m_start = new Date();
 
         // Gatter einzeigen
-        m_calculator.setImageResource(calculator.getImageResourceId());
+        m_calculator.setImageResource(calculator.getImageResourceId(CalculatorBase.DisplayMode.Ansi));
 
         // Den oder die Eingänge anzeigen
         if (calculator.getCount() > 1) {
