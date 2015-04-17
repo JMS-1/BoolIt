@@ -14,6 +14,9 @@ public class OrCalculator extends CalculatorBase {
     @Override
     public int getImageResourceId(DisplayMode mode) {
         switch (mode) {
+            case Iec:
+                // IEC 60617-12
+                return R.drawable.or_iec;
             default:
                 // Der Vorzugsmodus ist US ANSI 91-1984
                 return R.drawable.or;

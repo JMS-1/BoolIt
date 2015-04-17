@@ -79,6 +79,8 @@ public abstract class CalculatorBase {
 
     // Die gewählte Art der Bilder.
     public enum DisplayMode {
-        Ansi
+        Ansi,
+
+        Iec,
     }
 }
