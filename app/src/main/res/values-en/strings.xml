@@ -23,11 +23,14 @@
     <string name="long_not">The gate sets its output only if the input is not active.</string>
 
     <string name="title_activity_help_screen">About the Puzzle</string>
-    <string name="title_settings">Einstellungen</string>
+    <string name="title_settings">Settings</string>
 
     <string name="activity_help_text">This is your chance to show what you know about the most important logic gates.\r\n\r\nEach puzzle shows one logic gate - touch it to get some more information. Below the gate the states of the inputs are shown and it is your task to choose the correct output state just above the gate.\r\n\r\nIf you are right you get some points between 1 and 100 - depending on how fast you were. Otherweise there are no points and to get the next puzzle you have to confirm the correct state.</string>
 
     <string name="pref_icon_mode_key">IconMode</string>
     <string name="pref_icon_mode">Display</string>
     <string name="pref_icon_mode_title">Choose Display</string>
+
+    <string name="icon_mode_ansi">ANSI</string>
+    <string name="icon_mode_iec">IEC</string>
 </resources>

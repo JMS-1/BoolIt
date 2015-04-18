@@ -6,15 +6,6 @@
     android:padding="10dp"
     tools:context=".WelcomeActivity">
 
-    <TextView
-        android:id="@+id/points"
-        style="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:text="0" />
-
     <LinearLayout
         android:id="@+id/outputs"
         android:layout_width="wrap_content"
@@ -71,5 +62,14 @@
         android:layout_marginRight="10dp"
         android:layout_toLeftOf="@id/outputs"
         android:layout_toRightOf="@id/input_guess" />
+
+    <TextView
+        android:id="@+id/points"
+        style="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:text="0" />
 
 </RelativeLayout>

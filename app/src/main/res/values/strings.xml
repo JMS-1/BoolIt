@@ -30,4 +30,7 @@
     <string name="pref_icon_mode_key">IconMode</string>
     <string name="pref_icon_mode">Darstellung</string>
     <string name="pref_icon_mode_title">Darstellung auswählen</string>
+
+    <string name="icon_mode_ansi">ANSI</string>
+    <string name="icon_mode_iec">IEC</string>
 </resources>

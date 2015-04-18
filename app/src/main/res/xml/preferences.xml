@@ -2,7 +2,7 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <net.psimarron.boolit.IconModeSelector
-        android:defaultValue="ANSI"
+        android:defaultValue="@string/icon_mode_ansi"
         android:dialogTitle="@string/pref_icon_mode_title"
         android:entries="@array/pref_icon_mode_entries"
         android:entryValues="@array/pref_icon_mode_values"

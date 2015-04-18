@@ -28,7 +28,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         String iconModeName = WelcomeActivity.getIconModeSettingName(activity);
         String iconMode = PreferenceManager.getDefaultSharedPreferences(activity).getString(iconModeName, values[0]);
 
-        // Ermittelt den zugehörigen Anzeigetext
+        // Ermittelt den Anzeigetext für den Anzeigemode
         for (int i = 0; i < values.length; i++)
             if (values[i].equals(iconMode)) {
                 String[] entries = activity.getResources().getStringArray(R.array.pref_icon_mode_entries);

@@ -13,8 +13,10 @@ public abstract class CalculatorBase {
                     NotXorCalculator.class,
                     NotCalculator.class,
             };
+
     // Die Eingänge des Gatters.
     private final boolean[] m_inputs;
+
     // Die interne und willkürliche laufende Nummer der Art des Gatters - wie in _CalculatorClasses eingeordnet.
     private int m_index;
 

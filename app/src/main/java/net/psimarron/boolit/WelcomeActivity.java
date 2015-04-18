@@ -67,9 +67,9 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
     // Ermittelt die aktuelle Darstellung.
     public static CalculatorBase.DisplayMode getIconMode(Context activity) {
         String iconMode = PreferenceManager.getDefaultSharedPreferences(activity).getString(getIconModeSettingName(activity), null);
-        if ("ANSI".equals(iconMode))
+        if (activity.getResources().getString(R.string.icon_mode_ansi).equals(iconMode))
             return CalculatorBase.DisplayMode.Ansi;
-        else if ("IEC".equals(iconMode))
+        if (activity.getResources().getString(R.string.icon_mode_iec).equals(iconMode))
             return CalculatorBase.DisplayMode.Iec;
         else
             return CalculatorBase.DisplayMode.Ansi;

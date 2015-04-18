@@ -5,7 +5,7 @@
         <item>IEC 60617-12 : 1997</item>
     </array>
     <array name="pref_icon_mode_values">
-        <item>ANSI</item>
-        <item>IEC</item>
+        <item>@string/icon_mode_ansi</item>
+        <item>@string/icon_mode_iec</item>
     </array>
 </resources>

@@ -10,6 +10,7 @@ import android.widget.ListAdapter;
 
 // Auswahlelement für die Art der Darstellung.
 public class IconModeSelector extends ListPreference {
+    // Erstellt ein neues Auswahlelement.
     public IconModeSelector(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -20,7 +21,7 @@ public class IconModeSelector extends ListPreference {
         Context context = getContext();
         int index = 0;
 
-        // Aktuelle Auswahl ermitteln
+        // Aktuelle Auswahl ermitteln und in die laufende Position der Auswahlzeile umsetzen
         String iconMode = PreferenceManager.getDefaultSharedPreferences(context).getString(WelcomeActivity.getIconModeSettingName(context), null);
         for (int i = 0; i < values.length; i++)
             if (values[i].toString().equals(iconMode)) {
@@ -39,7 +40,7 @@ public class IconModeSelector extends ListPreference {
 
     // Übernimmt die Auswahl des Anwenders.
     public void setResult(String value) {
-        // Auswahl blind übernehmen
+        // Auswahl blind übernehmen - den Rest macht der PreferencesManager für uns
         SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
         edit.putString(getKey(), value);
         edit.commit();
