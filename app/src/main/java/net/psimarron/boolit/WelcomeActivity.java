@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,12 +17,12 @@ import java.util.Random;
 
 // Diese Aktivität ist das eigentliche Spiel. Sie wird auch als EInstieg angezeigt.
 public class WelcomeActivity extends Activity implements View.OnClickListener {
+    // Das Ergebnis der Änderung der Einstellungen.
+    private final static int SETTINGS_RESULT = 1;
     // Der Name der persistenten Ablage der bisher durchgeführten Spiele.
     private final String NAME_TRIES = "tries";
-
     // Der Name der persistenten Ablage der bisher gesammelten Punkte.
     private final String NAME_POINTS = "points";
-
     // Das aktuell angezeigte Gatter.
     private CalculatorBase m_current;
 
@@ -54,6 +55,22 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
 
     // Der Zeitpunkt, an de, das aktuelle Spiel begonnen wurde.
     private Date m_start;
+
+    // Ermittelt den Namen für die Einstellung der Darstellung.
+    public static String getIconModeSettingName(Context activity) {
+        return activity.getResources().getString(R.string.pref_icon_mode_key);
+    }
+
+    // Ermittelt die aktuelle Darstellung.
+    public static CalculatorBase.DisplayMode getIconMode(Context activity) {
+        String level = PreferenceManager.getDefaultSharedPreferences(activity).getString(getIconModeSettingName(activity), null);
+        if ("ANSI".equals(level))
+            return CalculatorBase.DisplayMode.Ansi;
+        else if ("IEC".equals(level))
+            return CalculatorBase.DisplayMode.Iec;
+        else
+            return CalculatorBase.DisplayMode.Ansi;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,6 +192,13 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
                 startActivity(intent);
 
                 return true;
+            case R.id.action_settings:
+                // Einstellungen anzeigen und das Ergebnis abwarten
+                intent = new Intent();
+                intent.setClass(this, SettingsActivity.class);
+                startActivityForResult(intent, SETTINGS_RESULT);
+
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -187,7 +211,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
         m_start = new Date();
 
         // Gatter einzeigen
-        m_calculator.setImageResource(calculator.getImageResourceId(CalculatorBase.DisplayMode.Ansi));
+        m_calculator.setImageResource(calculator.getImageResourceId(getIconMode(this)));
 
         // Den oder die Eingänge anzeigen
         if (calculator.getCount() > 1) {
@@ -224,5 +248,15 @@ public class WelcomeActivity extends Activity implements View.OnClickListener {
             newChallenge();
         else if (!alreadyLost)
             v.setActivated(true);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Nachsehen, ob die Einstellungen verändert wurden
+        if (requestCode == SETTINGS_RESULT)
+            if (resultCode == RESULT_OK)
+                newChallenge();
     }
 }

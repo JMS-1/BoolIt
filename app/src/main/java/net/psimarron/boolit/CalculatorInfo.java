@@ -36,6 +36,6 @@ public class CalculatorInfo extends Activity {
         // Informationen über das Gatter in die Oberfläche übertragen
         setTitle(calculator.getName());
         description.setText(calculator.getDescription());
-        image.setImageResource(calculator.getImageResourceId(CalculatorBase.DisplayMode.Ansi));
+        image.setImageResource(calculator.getImageResourceId(WelcomeActivity.getIconMode(this)));
     }
 }

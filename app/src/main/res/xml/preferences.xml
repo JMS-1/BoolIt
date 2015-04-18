@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:defaultValue="ANSI"
+        android:dialogTitle="@string/pref_icon_mode_title"
+        android:entries="@array/pref_icon_mode_entries"
+        android:entryValues="@array/pref_icon_mode_values"
+        android:key="@string/pref_icon_mode_key"
+        android:title="@string/pref_icon_mode" />
+
+</PreferenceScreen>

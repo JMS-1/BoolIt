@@ -29,7 +29,7 @@ public class HelpScreen extends Activity {
 
             // Bild eintragen und mit der laufenden Nummer der Art des Gatters versehen
             ImageView image = (ImageView) calculators.getChildAt(i).findViewById(R.id.inner_image);
-            image.setImageResource(calculator.getImageResourceId(CalculatorBase.DisplayMode.Ansi));
+            image.setImageResource(calculator.getImageResourceId(WelcomeActivity.getIconMode(this)));
             image.setTag(new Integer(i));
 
             // Beim Berüchrung des Bildes werden dann die Detailinformationen zum Gatter angezeigt

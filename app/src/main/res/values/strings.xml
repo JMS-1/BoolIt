@@ -23,6 +23,11 @@
     <string name="long_not">Der Ausgang dieses Logikgatters ist immer dann gesetzt, wenn der einzige Eingänge nicht gesetzt ist.</string>
 
     <string name="title_activity_help_screen">Erläuterungen</string>
+    <string name="title_settings">Einstellungen</string>
 
     <string name="activity_help_text">Hier kannst Du beweisen, ob Du die wichtigsten Logikgatter und die zugehörige boolsche Algebra kennst.\r\n\r\nIn jeder Aufgabe wird ein Logikgatter gezeigt - durch Antippen kannst Du es Dir kurz beschreiben lassen. Unter dem Gatter siehst Du die Eingänge und es ist nun Deine Aufgabe, möglichst schnell über dem Gatter die richtige Ausgabe auszuwählen.\r\n\r\nIst Deine Wahl richtig, so bekommst Du zwischen 1 und 100 Punkte - je nachdem, wie schnell Du warst. Bei einer falschen Wahl gibt es keine Punkte und Du musst für die nächste Aufgabe die richtige Ausgabe anwählen.</string>
+
+    <string name="pref_icon_mode_key">IconMode</string>
+    <string name="pref_icon_mode">Darstellung</string>
+    <string name="pref_icon_mode_title">Darstellung auswählen</string>
 </resources>
