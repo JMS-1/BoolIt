@@ -22,9 +22,22 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
     // Aktualisiert alle Beschreibungen.
     public void updateSummaries() {
-        // Beschreibungen setzen
-        ListPreference level = (ListPreference) findPreference(WelcomeActivity.getIconModeSettingName(getActivity()));
-        level.setSummary(level.getEntry());
+        // Ermittelt die aktuelle Auswahl
+        Activity activity = getActivity();
+        String[] values = activity.getResources().getStringArray(R.array.pref_icon_mode_values);
+        String iconModeName = WelcomeActivity.getIconModeSettingName(activity);
+        String iconMode = PreferenceManager.getDefaultSharedPreferences(activity).getString(iconModeName, values[0]);
+
+        // Ermittelt den zugehörigen Anzeigetext
+        for (int i = 0; i < values.length; i++)
+            if (values[i].equals(iconMode)) {
+                String[] entries = activity.getResources().getStringArray(R.array.pref_icon_mode_entries);
+
+                ListPreference level = (ListPreference) findPreference(iconModeName);
+                level.setSummary(entries[i]);
+
+                break;
+            }
     }
 
     @Override
