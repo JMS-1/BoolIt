@@ -4,7 +4,7 @@
     <string name="action_reset">Reset</string>
     <string name="action_help">How to Play</string>
 
-    <string name="result_current">Avarage Result: %1$d</string>
+    <string name="result_current">Average Result: %1$d</string>
 
     <string name="short_and">AND (Conjunction)</string>
     <string name="short_nand">NOT AND (-)</string>
